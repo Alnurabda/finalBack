@@ -1,0 +1,140 @@
+<style>
+/* Pink Gradient Styles.css */
+
+/* Reset default styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Body background and font */
+body {
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(to right, #ff99cc, #ff66b2); /* Pink gradient background */
+  color: #fff;
+  padding: 20px;
+}
+
+/* Navigation Bar */
+nav {
+  background: linear-gradient(to right, #ff66b2, #ff99cc); /* Matching nav bar gradient */
+  padding: 15px 20px;
+  text-align: center;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+nav a {
+  color: white;
+  margin: 0 15px;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 18px;
+  transition: transform 0.2s ease;
+}
+
+nav a:hover {
+  transform: scale(1.1);
+}
+
+/* Cute form styles */
+form {
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 30px;
+  background-color: #fff;
+  border-radius: 20px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  color: #333;
+}
+
+form input, form button {
+  width: 100%;
+  padding: 12px;
+  margin: 10px 0;
+  border-radius: 25px;
+  border: 2px solid #ff66b2;
+  font-size: 16px;
+  font-family: 'Poppins', sans-serif;
+}
+
+form input {
+  background-color: #ffe0f3;
+  transition: box-shadow 0.3s ease;
+}
+
+form input:focus {
+  box-shadow: 0 0 8px #ff66b2;
+  outline: none;
+}
+
+form button {
+  background: linear-gradient(to right, #ff66b2, #ff99cc);
+  color: white;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+form button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Form headings */
+h1, h2 {
+  text-align: center;
+  color: #ff66b2;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+h1 {
+  font-size: 32px;
+}
+
+h2 {
+  font-size: 24px;
+}
+
+/* Add subtle animations */
+@keyframes bounceIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+form {
+  animation: bounceIn 0.8s ease;
+}
+
+/* Input fields */
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+  background-color: #ffe0f3;
+  border: 2px solid #ff66b2;
+  color: #333;
+}
+
+/* Button hover effect */
+button:hover {
+  background: linear-gradient(to right, #ff66b2, #ff99cc);
+  color: white;
+}
+
+</style>
+<nav>
+  <a href="/">Home</a>
+  <a href="/login">Login</a>
+  <a href="/register">Register</a>
+  <a href="/crypto">Crypto</a>
+</nav>
+<h1>Register</h1>
