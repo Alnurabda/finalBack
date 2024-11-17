@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cryptocurrency  Chart</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+       
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #ff99cc, #ff66b2);
+            color: #fff;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+        }
+
+        /* Container for content */
+        .container {
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 15px;
+            padding: 40px;
+            max-width: 800px;
+            width: 100%;
+        }
+
+        /* Navigation bar */
+        nav {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+            gap: 15px;
+        }
+
+        nav a {
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #ff3399;
+            text-decoration: underline;
+        }
+
+        /* Heading */
+        h1 {
+            font-size: 36px;
+            margin-bottom: 30px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        /* Button Styling */
+        #fetchDataButton {
+            background: #ff3399;
+            padding: 15px 25px;
+            border: none;
+            border-radius: 30px;
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.3s ease, background 0.3s ease;
+        }
+
+        #fetchDataButton:hover {
+            transform: scale(1.1);
+            background: #ff66b2;
+        }
+
+        /* Chart Canvas */
+        canvas {
+            max-width: 100%;
+            height: 300px;
+            display: block;
+            margin-top: 30px;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <nav>
+            <a href="/">Home</a>
+            <a href="/login">Login</a>
+            <a href="/register">Register</a>
+           
+        </nav>
+
+        <h1>Cryptocurrency Prices</h1>
+        <button id="fetchDataButton">Fetch Data & View Chart</button>
+        <canvas id="cryptoChart" style="display: none;"></canvas>
+    </div>
+
+    <script>
+        document.getElementById('fetchDataButton').addEventListener('click', async () => {
+            try {
+                const response = await fetch('/api/crypto');
+                const data = await response.json();
+
+                const labels = data.map(coin => coin.name);
+                const prices = data.map(coin => coin.price);
+
+                // Show the canvas
+                document.getElementById('cryptoChart').style.display = 'block';
+
+                // Draw the chart
+                const ctx = document.getElementById('cryptoChart').getContext('2d');
+                new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: labels,
+                        datasets: [{
+                            label: 'Price in USD',
+                            data: prices,
+                            backgroundColor: [
+        'rgba(255, 99, 132, 0.8)',  // Red with opacity
+        'rgba(54, 162, 235, 0.8)',  // Blue with opacity
+        'rgba(255, 159, 64, 0.8)',  // Orange with opacity
+        'rgba(75, 192, 192, 0.8)',  // Teal with opacity
+        'rgba(153, 102, 255, 0.8)', // Purple with opacity
+        'rgba(255, 159, 64, 0.8)',  // Orange with opacity
+        'rgba(255, 99, 132, 0.8)'   // Red with opacity
+    ],
+    borderColor: [
+        'rgba(255, 99, 132, 1)',    // Red border
+        'rgba(54, 162, 235, 1)',    // Blue border
+        'rgba(255, 159, 64, 1)',    // Orange border
+        'rgba(75, 192, 192, 1)',    // Teal border
+        'rgba(153, 102, 255, 1)',   // Purple border
+        'rgba(255, 159, 64, 1)',    // Orange border
+        'rgba(255, 99, 132, 1)'     // Red border
+    ],
+    borderWidth: 3,                // Thicker borders
+    hoverBackgroundColor: 'rgba(255, 255, 0, 0.5)', // Hover effect (yellow)
+    hoverBorderColor: 'rgba(255, 255, 0, 1)', // Hover border color (yellow)
+    hoverBorderWidth: 5           // Thicker border on hover
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        plugins: {
+                            legend: {
+                                position: 'top',
+                            },
+                        },
+                        scales: {
+                            y: {
+                                beginAtZero: true
+                            }
+                        }
+                    }
+                });
+            } catch (error) {
+                console.error('Error fetching cryptocurrency data:', error);
+            }
+        });
+    </script>
+</body>
+</html>
